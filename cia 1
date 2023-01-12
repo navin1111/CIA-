@@ -1,0 +1,45 @@
+int main()
+{
+    int m,n;
+    cout<<"Enter the value of m,n :";
+    cin>>m>>n;
+    char s1[m],s2[n];
+    cout<<"String 1 : ";
+    cin>>s1;
+    cout<<"String 2 : ";
+    cin>>s2;
+    int arr[m+1][n+1];
+    for(int i=0;i<m+1;i++)
+        {
+            for(int j=0;j<1;j++)
+                {
+                        arr[i][j]=0;
+                        arr[j][i]=0;
+		}
+        }
+    for(int i=0;i<m+1;i++)
+    {
+            for(int j=0;j<n+1;j++)
+		{
+                    if(j==strlen(s2) || i == strlen(s1)){break;}
+                    int val = max(arr[i][j+1],arr[i+1][j],arr[i][j]);
+			if(s1[i]==s2[j])
+                            {
+                                arr[i+1][j+1] = arr[i][j]+2;
+                            }
+                        else
+                            {
+                                arr[i+1][j+1] = val-1;
+                            }
+                }
+        }
+    for(int i=0;i<m+1;i++)
+        {
+            for(int j=0;j<n+1;j++)
+                {
+                        cout<<arr[i][j]<<"   ";
+                }
+            cout<<"\n";
+        }
+    return 0;
+}
